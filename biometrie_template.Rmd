@@ -94,13 +94,17 @@ laborant_ID,subject_ID,handlengte,handbreedte,sexe
 Om data vanuit een tekstbestand in te lezen kan je dit codeblok gebruiken, aannemend dat je data er exact zo uitzien als in bovenstaande voorbeeld:
 
 ```{r demo-data-inlees, eval=FALSE}
-data_file <- "pad/naar/jouw/databestand.csv"
+data_file <- "zelf_verzamelde_data_handen.csv"
 
 #data format: laborant_ID,subject_ID,handlengte,handbreedte,sexe
 biometric_data <- read.table(file = data_file,
                         header = TRUE,
                         sep = ",")
 
+handlengte <- biometric_data[3]
+handbreedte <- biometric_data[2]
+lengte_breedte_ratio <- handlengte / handbreedte
+c(lengte_breedte_ratio)
 ```
 
 Let op: als je missende data hebt moet je die specificeren door dit argument toe te voegen: `na.strings = "<jouw NA symbool>"`
@@ -114,10 +118,41 @@ BESPREEK DEZE DATA EN FIGUREN KORT.
 KAN JE IETS ZEGGEN OVER DE DATAVERDELING?
 
 ### Welke verdeling?
+```{r}
+
+```
 
 Hoe kleiner de steekproefgrootte (_sample size_) hoe lastiger het is de onderliggende verdeling vast te stellen. Speel maar eens met dit blokje code, en verander de steekproefgrootte (`n=`) in de `rnorm()` functie en de `breaks=` in de `hist()` functie. 
 Neem voor _n_ bijvoorbeeld achtereenvolgens 10, 100, 1000, 10000, 10000 en voor _breaks_ 5, 10, 50. Wanneer zie je een echte normaalverdeling verschijnen? 
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 5, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 10, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 50, fill = "gold", colour = "black") +
+    theme_minimal()
+```
 
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 100))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 5, fill = "gold", colour = "black") +
+    theme_minimal()
+```
 ```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100))
 ggplot(data = hist_data,
@@ -125,10 +160,85 @@ ggplot(data = hist_data,
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 100))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 50, fill = "gold", colour = "black") +
+    theme_minimal()
+```
 
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 1000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 5, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 1000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 10, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 1000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 50, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+
+
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 5, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 10, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 10000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 50, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 100000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 5, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 100000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 10, fill = "gold", colour = "black") +
+    theme_minimal()
+```
+```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+hist_data <- data.frame(x = rnorm(n = 100000))
+ggplot(data = hist_data,
+       mapping = aes(x = x)) +
+    geom_histogram(bins = 50, fill = "gold", colour = "black") +
+    theme_minimal()
+```
 :::attention
 **Dit _experiment_ met de argumenten van `rnorm()` en `hist()` moet je opnemen in je eigen RMarkdown.**  
 Beantwoord deze vragen:
+
+
 
 1. Wat gebeurt er met de vorm van de verdeling als `n` groter wordt?
 2. Wat gebeurt er met de spreiding van de data (x-as) als `n` groter wordt, en kan je dat verklaren?
