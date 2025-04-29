@@ -105,7 +105,7 @@ handlengte <- biometric_data[3]
 handbreedte <- biometric_data[2]
 lengte_breedte_ratio <- handlengte / handbreedte
 c(lengte_breedte_ratio)
-
+# Misschien is deze bron nuttig: https://www.youtube.com/watch?v=4CGLV2dku34
 df <- as.data.frame(lengte_breedte_ratio)
 write.table(df, "zelf_verzamelde_data_handen.csv",
           append = TRUE, sep = ",")
