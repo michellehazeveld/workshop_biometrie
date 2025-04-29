@@ -250,6 +250,18 @@ Beantwoord deze vragen:
 3. Waarom is bij zelfde instellingen voor `n` en `breaks` de uitkomst toch verschillend?
 4. Welke minimale `n` geeft het meeste kans om een echte normaalverdeling te zien?
 5. Wat voor bijzonders is er aan de hand met het `breaks` argument? Geeft de documentatie daar een verklaring voor?
+
+Antwoorden:
+
+1. Als n steeds groter wordt, nadert de vorm van de verdeling steeds meer tot een normaalverdeling.
+2. Als n steeds groter wordt, wordt de spreiding steeds kleiner, want de spreiding wordt berekend door sigma / wortel(n) Bron: https://stats.libretexts.org/Bookshelves/Applied_Statistics/Business_Statistics_(OpenStax)/07%3A_The_Central_Limit_Theorem/7.02%3A_Using_the_Central_Limit_Theorem
+3. Dit komt denk ik door toevallige fouten.
+4. Als ik het antwoord uit de histogrammen haal, denk ik dat n minimaal 10000 moet zijn, maar bij het vak statistiek op mijn vorige school heb ik geleerd dat n minimaal 30 moet zijn.
+5. Bij teveel bins zal de variabiliteit groter lijken dan in werkelijkheid. Variabiliteit beschrijft hoe ver de datapunten van elkaar van het centrum van de spreiding liggen. Bij te weinig bins zal de variabiliteit juist kleiner lijken dan in werkelijkheid. Bronnen: 
+
+https://r-charts.com/distribution/histogram-breaks/
+
+https://www.scribbr.com/statistics/variability/#:~:text=Variability%20describes%20how%20far%20apart,as%20spread%2C%20scatter%20or%20dispersion. 
 :::
 
 ### Bronnen van variatie
