@@ -104,12 +104,18 @@ biometric_data <- read.table(file = data_file,
 handlengte <- biometric_data[3]
 handbreedte <- biometric_data[2]
 lengte_breedte_ratio <- handlengte / handbreedte
-c(lengte_breedte_ratio)
-# Misschien is deze bron nuttig: https://www.youtube.com/watch?v=4CGLV2dku34
-df <- as.data.frame(lengte_breedte_ratio)
-write.table(df, "zelf_verzamelde_data_handen.csv",
-          append = TRUE, sep = ",")
+#c(lengte_breedte_ratio)
+# Gebruikte bronnen voor onderstaande code in deze chunk: 
+# https://stackoverflow.com/questions/13079387/how-to-add-data-by-columns-in-csv-f# ile-using-r#:~:text=You%20can't%20append%20columns,file%20is%20stored%20on%2Ddis# k.
+# https://how.dev/answers/what-are-the-rownames-and-colnames-functions-in-r 
+df_ratio <- data.frame(lengte_breedte_ratio)
 
+c(df_ratio)
+
+tmp <- read.csv("zelf_verzamelde_data_handen.csv")
+tmp <- cbind(tmp, df_ratio)
+colnames(tmp) <- c("number", "breedte", "lengte", "geslacht", "lengte/breedte-ratio")
+write.csv(tmp, "zelf_verzamelde_data_handen_v2.csv")
 ```
 
 Let op: als je missende data hebt moet je die specificeren door dit argument toe te voegen: `na.strings = "<jouw NA symbool>"`
