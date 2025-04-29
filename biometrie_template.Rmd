@@ -1,6 +1,6 @@
 ---
 title: "Biometrie onderzoek"
-authors: "<Jullie namen>"
+authors: "Ype de Vos en Michelle Hazeveld (studentennummer: 488153)"
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -114,11 +114,27 @@ c(df_ratio)
 
 tmp <- read.csv("zelf_verzamelde_data_handen.csv")
 tmp <- cbind(tmp, df_ratio)
-colnames(tmp) <- c("number", "breedte", "lengte", "geslacht", "lengte/breedte-ratio")
+colnames(tmp) <- c("nummer", "handbreedte", "handlengte", "geslacht", "lengte_breedte_ratio")
 write.csv(tmp, "zelf_verzamelde_data_handen_v2.csv")
+biometric_data <- read.table(file = "zelf_verzamelde_data_handen_v2.csv",
+                        header = TRUE,
+                        sep = ",")
 ```
 
 Let op: als je missende data hebt moet je die specificeren door dit argument toe te voegen: `na.strings = "<jouw NA symbool>"`
+```{r}
+#split over gender into list of dataframes
+geslacht_split_data <- split(x = biometric_data,
+      f = biometric_data$geslacht)
+
+#apply a function to report means of both measurements
+sapply(X = geslacht_split_data,
+       FUN = function(x){
+           c(handlengte = mean(x$handlengte),
+             handbreedte = mean(x$handbreedte),
+             lengte_breedte_ratio = mean(x$lengte_breedte_ratio))
+       })
+```
 
 
 ### Beschrijvende statistiek
