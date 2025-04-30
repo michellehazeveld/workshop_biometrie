@@ -32,16 +32,19 @@ Het staat je vrij een ander simpel te meten biometrisch kenmerk te onderzoeken. 
 
 :::attention
 GEEF HIER JE ONDERZOEKSVRAAG
+Is er bij de mens een sekseverschil in de lengte/breedte-ratio van de hand?
 :::
 
 
 :::attention
 GEEF HIER JE HYPOTHESE
+Er is bij de mens een sekseverschil in de lengte/breedte-ratio van de hand.
 :::
 
 
 :::attention
 GEEF HIER JE NULHYPOTHESE
+Er is bij de mens geen sekseverschil in de lengte/breedte-ratio van de hand.
 :::
 
 
@@ -93,6 +96,13 @@ laborant_ID,subject_ID,handlengte,handbreedte,sexe
 
 Om data vanuit een tekstbestand in te lezen kan je dit codeblok gebruiken, aannemend dat je data er exact zo uitzien als in bovenstaande voorbeeld:
 
+### Beschrijvende statistiek
+
+LAAT ENKELE BESCHRIJVENDE STATISTISCHE WAARDES ZIEN.
+GEEF EEN OF MEERDERE BOXPLOTS EN HISTOGRAMMEN
+BESPREEK DEZE DATA EN FIGUREN KORT.
+KAN JE IETS ZEGGEN OVER DE DATAVERDELING?
+
 ```{r demo-data-inlees, eval=FALSE}
 data_file <- "zelf_verzamelde_data_handen.csv"
 
@@ -130,25 +140,80 @@ geslacht_split_data <- split(x = biometric_data,
 #apply a function to report means of both measurements
 sapply(X = geslacht_split_data,
        FUN = function(x){
-           c(handlengte = mean(x$handlengte),
-             handbreedte = mean(x$handbreedte),
-             lengte_breedte_ratio = mean(x$lengte_breedte_ratio))
+           c(gem_handlengte = mean(x$handlengte),
+             gem_handbreedte = mean(x$handbreedte),
+             gem_lengte_breedte_ratio = mean(x$lengte_breedte_ratio),
+             stdev_handlengte = sd(x$handlengte),
+             stdev_handbreedte = sd(x$handbreedte),
+             stdev_lengte_breedte_ratio = sd(x$lengte_breedte_ratio))
        })
 ```
-
-
-### Beschrijvende statistiek
-
-LAAT ENKELE BESCHRIJVENDE STATISTISCHE WAARDES ZIEN.
-GEEF EEN OF MEERDERE BOXPLOTS EN HISTOGRAMMEN
-BESPREEK DEZE DATA EN FIGUREN KORT.
-KAN JE IETS ZEGGEN OVER DE DATAVERDELING?
-
-### Welke verdeling?
-```{r}
-
+```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+ggplot(data = biometric_data,
+       mapping = aes(x = geslacht, y = handlengte, fill = geslacht)) +
+    geom_boxplot() +
+    geom_point() +
+    labs(x = "Geslacht", y = "Handlengte (cm)") + 
+    theme_minimal()
+```
+```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+ggplot(data = biometric_data,
+       mapping = aes(x = geslacht, y = handbreedte, fill = geslacht)) +
+    geom_boxplot() +
+    geom_point() +
+    labs(x = "Geslacht", y = "Handbreedte (cm)") + 
+    theme_minimal()
+```
+```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+ggplot(data = biometric_data,
+       mapping = aes(x = geslacht, y = lengte_breedte_ratio, fill = geslacht)) +
+    geom_boxplot() +
+    geom_point() +
+    labs(x = "Geslacht", y = "Lengte/breedte-ratio (cm)") + 
+    theme_minimal()
+```
+```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
+ggplot(data = biometric_data,
+       mapping = aes(x = handlengte, fill = geslacht)) +
+    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    facet_wrap(. ~ geslacht) +                       # split plots over gender
+    labs(x = "Handlengte (cm)") +
+    theme_minimal()
+```
+```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
+ggplot(data = biometric_data,
+       mapping = aes(x = handbreedte, fill = geslacht)) +
+    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    facet_wrap(. ~ geslacht) +                       # split plots over gender
+    labs(x = "Handbreedte (cm)") +
+    theme_minimal()
+```
+```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
+ggplot(data = biometric_data,
+       mapping = aes(x = lengte_breedte_ratio, fill = geslacht)) +
+    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    facet_wrap(. ~ geslacht) +                       # split plots over gender
+    labs(x = "Lengte/breedte-ratio") +
+    theme_minimal()
 ```
 
+### Welke verdeling?
+```{r test-for-normality}
+shapiro.test(biometric_data$lengte_breedte_ratio)
+```
+Bij de lengte_breedte_ratio is de p-waarde (=0.2402) groter dan 0.05, dus is de verdeling van de steekproef niet significant verschillend van de normale verdeling. De t-test kan alleen bij een normaalverdeling gebruikt worden. Dus in dit geval kan de t-test gebruikt worden. Hieronder wordt de onafhankelijke t-test uitgevoerd.
+```{r t-test-op-ratio}
+female_ratios <- subset(biometric_data, 
+                        subset = geslacht == "vrouw", 
+                        select = lengte_breedte_ratio, 
+                        drop = T) # drop = T forces ro a vector
+male_ratios <- subset(biometric_data, 
+                        subset = geslacht == "man", 
+                        select = lengte_breedte_ratio, 
+                        drop = T)
+t.test(female_ratios, male_ratios)
+```
+De p-waarde = 0.4218. Dit is groter dan 0.05, dus de nulhypothese wordt niet verworpen. Dit betekent dat er geen bewijs is gevonden voor een significant verschil in handlengte/handbreedte-ratio's tussen mannen en vrouwen.
 Hoe kleiner de steekproefgrootte (_sample size_) hoe lastiger het is de onderliggende verdeling vast te stellen. Speel maar eens met dit blokje code, en verander de steekproefgrootte (`n=`) in de `rnorm()` functie en de `breaks=` in de `hist()` functie. 
 Neem voor _n_ bijvoorbeeld achtereenvolgens 10, 100, 1000, 10000, 10000 en voor _breaks_ 5, 10, 50. Wanneer zie je een echte normaalverdeling verschijnen? 
 ```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
