@@ -24,6 +24,10 @@ library(ggplot2)
 
 GEEF EEN HEEL KORTE INLEINDING VAN JE ONDERZOEK
 
+Biometrie betekent het vaststellen van meetbare eigenschappen van levende wezens. Dit kan bijvoorbeeld betekenen lichaamsgewicht, lengte van ledematen, levensduur, sexe. Biometrische kenmerken worden ook gebruikt in je paspoort.
+
+4 bio-informatica studenten zijn bezig geweest met het vaststellen van de handlengte/breedte-ratio, in het bijzonder in afhankelijkheid van sekse.
+
 :::info
 Het staat je vrij een ander simpel te meten biometrisch kenmerk te onderzoeken. Voorwaarde is wel dat je twee aspecten meet (bv lichaamslengte en hoofdomtrek) en hun relatie onderzoekt, en ook dat je verschillende groepen onderzoekt (man/vrouw, jong/oud etc.). Ten slotte moeten verschillende studenten het meetwerk afwisselen en ook dat moet vastgelegd worden.
 :::
@@ -31,50 +35,49 @@ Het staat je vrij een ander simpel te meten biometrisch kenmerk te onderzoeken. 
 
 
 :::attention
-GEEF HIER JE ONDERZOEKSVRAAG
-Is er bij de mens een sekseverschil in de lengte/breedte-ratio van de hand?
+GEEF HIER JE ONDERZOEKSVRAGEN
+1. Is er bij de mens een significant sekseverschil in de lengte van de hand?
+2. Is er bij de mens een significant sekseverschil in de breedte van de hand?
+3. Is er bij de mens een significant sekseverschil in de lengte/breedte-ratio van de hand?
 :::
 
 
 :::attention
-GEEF HIER JE HYPOTHESE
-Er is bij de mens een sekseverschil in de lengte/breedte-ratio van de hand.
+GEEF HIER JE HYPOTHESES
+1. Er is bij de mens een significant sekseverschil in de lengte van de hand.
+2. Er is bij de mens een significant sekseverschil in de breedte van de hand.
+3. Er is bij de mens een significant sekseverschil in de lengte/breedte-ratio van de hand.
 :::
 
 
 :::attention
-GEEF HIER JE NULHYPOTHESE
-Er is bij de mens geen sekseverschil in de lengte/breedte-ratio van de hand.
+GEEF HIER JE NULHYPOTHESES
+1. Er is bij de mens geen significant sekseverschil in de lengte van de hand.
+2. Er is bij de mens geen significant sekseverschil in de breedte van de hand.
+3. Er is bij de mens geen significant sekseverschil in de lengte/breedte-ratio van de hand.
 :::
 
 
 ### Ontwerp van het experiment
 
 > GEEF EEN KORT OVERZICHT VAN JE EXPERIMENT
+Van 40 willekeurig geselecteerde proefpersonen in en rond het schoolgebouw is de handlengte en -breedte gemeten.
 
 ### Ontwerp het protocol
 
 VUL HIER ONDER HET PROTOCOL AAN OF PAS DEZE AAN NAAR JOUW OPZET.
-
-:::protocol
-#### Protocol voor meting handlengte en handbreedte
-
 ##### Benodigdheden
 
 1. Maatlat, schuifmaat of meetlint.  
-2. Spreadsheet om resultaten vast te leggen, met toegang hiertoe op locaties zonder internet-toegang.  
-3. Je laborant-ID: een unieke _identifier_ die jou als onderzoeker identificeert. Neem hiervoor de laatste 4 cijfers van je studentnummer.
+2. Spreadsheet om resultaten vast te leggen.
 
 ##### Data verzamelen
 
 Zoek, samen met een ander groepje van je klas, in of rond het schoolgebouw medestudenten. Vraag beleefd of ze willen participeren in een klein wetenschappelijk onderzoekje voor school waarbij de maten van de hand opgenomen zullen worden.  
 Is het antwoord nee, dan groet je vriendelijk en zoek je verder.  
-Is het antwoord ja, dan vraag je of de proefpersoon de hand horizontaal en gestrekt wil houden met de palm naar beneden. Vervolgens meet je zowel de lengte als de breedte van de hand op, in millimeters. Deze leg je vast in de spreadsheet, samen met je laborant-ID en een identifier (géén naam!) van de proefpersoon. Ten slotte vraag je aan de proefpersoon zijn/haar/hun sexe en legt deze vast. Wil de proefpersoon deze niet geven, of is die nonbinair, dan leg je dit vast als "anders/onbekend". Het "parallel groepje" (dat niet jouw bevindingen mag horen) doet dezelfde meting en slaat deze met dezelfde participant identifier op.  
+Is het antwoord ja, dan vraag je of de proefpersoon de hand horizontaal en gestrekt wil houden met de palm naar beneden. Vervolgens meet je zowel de lengte als de breedte van de hand op, in centimeters. Deze leg je vast in de spreadsheet, . Kijk of de persoon biologisch gezien een man of een vrouw is. Het "parallel groepje" (dat niet jouw bevindingen mag horen) doet dezelfde metingen in dezelfde volgorde en slaat de gegevens die het gemeten heeft op.  
 Bedank de proefpersoon voor deelname.  
-Wissel de metingen af tussen de verschillende studenten in jouw groepje.
-
-Ga door totdat van voldoende proefpersonen de gegevens zijn verzameld.
-:::
+Ga door totdat van ten minste 40 proefpersonen de gegevens zijn verzameld.
 
 
 ## Uitvoering
@@ -156,6 +159,8 @@ ggplot(data = biometric_data,
     labs(x = "Geslacht", y = "Handlengte (cm)") + 
     theme_minimal()
 ```
+Voor de verschillen aan de hand van twee boxplots is steeds de volgende bron gebruikt: https://content.math4all.nl/sec/content/vc-e6/vc-e63/vc-e63-explanation-1.html 
+De boxen overlappen elkaar niet, dus is er een groot verschil in de handlengte tussen mannen en vrouwen.
 ```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
 ggplot(data = biometric_data,
        mapping = aes(x = geslacht, y = handbreedte, fill = geslacht)) +
@@ -164,6 +169,7 @@ ggplot(data = biometric_data,
     labs(x = "Geslacht", y = "Handbreedte (cm)") + 
     theme_minimal()
 ```
+De boxen overlappen elkaar niet, dus is er een groot verschil in de handbreedte tussen mannen en vrouwen.
 ```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
 ggplot(data = biometric_data,
        mapping = aes(x = geslacht, y = lengte_breedte_ratio, fill = geslacht)) +
@@ -172,37 +178,66 @@ ggplot(data = biometric_data,
     labs(x = "Geslacht", y = "Lengte/breedte-ratio (cm)") + 
     theme_minimal()
 ```
+De boxen overlappen elkaar en beide medianen liggen binnen de box van de andere boxplot, dus is er een gering verschil in de handlengte/handbreedte-ratio tussen mannen en vrouwen.
 ```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = handlengte, fill = geslacht)) +
-    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    geom_histogram(bins = 1 + ceiling(log2(40)), colour = "black") + # histogram layer with using Sturge's rule to determine the number of bins. Source: https://medium.datadriveninvestor.com/how-to-decide-on-the-number-of-bins-of-a-histogram-3c36dc5b1cd8
     facet_wrap(. ~ geslacht) +                       # split plots over gender
     labs(x = "Handlengte (cm)") +
     theme_minimal()
 ```
+De data in het histogram over de handlengte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
 ```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = handbreedte, fill = geslacht)) +
-    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    geom_histogram(bins = 1 + ceiling(log2(40)), colour = "black") + # histogram layer with using Sturge's rule to determine the number of bins
     facet_wrap(. ~ geslacht) +                       # split plots over gender
     labs(x = "Handbreedte (cm)") +
     theme_minimal()
 ```
+De data in het histogram over de handbreedte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
 ```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = lengte_breedte_ratio, fill = geslacht)) +
-    geom_histogram(bins = 10, colour = "black") + # histogram layer with 10 bins
+    geom_histogram(bins = 1 + ceiling(log2(40)), colour = "black") + # histogram layer with using Sturge's rule to determine the number of bins
     facet_wrap(. ~ geslacht) +                       # split plots over gender
     labs(x = "Lengte/breedte-ratio") +
     theme_minimal()
 ```
-
+De data in het histogram over de handlengte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
 ### Welke verdeling?
 ```{r test-for-normality}
+shapiro.test(biometric_data$handlengte)
+shapiro.test(biometric_data$handbreedte)
 shapiro.test(biometric_data$lengte_breedte_ratio)
 ```
-Bij de lengte_breedte_ratio is de p-waarde (=0.2402) groter dan 0.05, dus is de verdeling van de steekproef niet significant verschillend van de normale verdeling. De t-test kan alleen bij een normaalverdeling gebruikt worden. Dus in dit geval kan de t-test gebruikt worden. Hieronder wordt de onafhankelijke t-test uitgevoerd.
-```{r t-test-op-ratio}
+Bij zowel de handlengte als handbreedte als lengte_breedte_ratio is de p-waarde (resp. 0.1122, 0.1514 en 0.2402) groter dan 0.05, dus is de verdeling van de steekproef niet significant verschillend van de normale verdeling. De t-test kan alleen bij een normaalverdeling gebruikt worden. Dus in dit geval kan de t-test gebruikt worden. Hieronder wordt de onafhankelijke t-test uitgevoerd.
+```{r t-test op handlengte}
+female_lengths <- subset(biometric_data, 
+                        subset = geslacht == "vrouw", 
+                        select = handlengte, 
+                        drop = T) # drop = T forces ro a vector
+male_lengths <- subset(biometric_data, 
+                        subset = geslacht == "man", 
+                        select = handlengte, 
+                        drop = T)
+t.test(female_lengths, male_lengths)
+```
+De p-waarde is 1.282e-05. Dit is kleiner dan 0.05, dus nulhypothese 1 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil in handlengte tussen mannen en vrouwen.
+```{r t-test-op-handbreedte}
+female_widths <- subset(biometric_data, 
+                        subset = geslacht == "vrouw", 
+                        select = handbreedte, 
+                        drop = T) # drop = T forces ro a vector
+male_widths <- subset(biometric_data, 
+                        subset = geslacht == "man", 
+                        select = handbreedte, 
+                        drop = T)
+t.test(female_widths, male_widths)
+```
+De p-waarde is 7.335e-05. Dit is kleiner dan 0.05, wat betekent dat nulhypothese 2 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil in handbreedte tussen mannen en vrouwen. 
+```{r t-test-oplengte-breedte-ratio}
 female_ratios <- subset(biometric_data, 
                         subset = geslacht == "vrouw", 
                         select = lengte_breedte_ratio, 
@@ -213,7 +248,8 @@ male_ratios <- subset(biometric_data,
                         drop = T)
 t.test(female_ratios, male_ratios)
 ```
-De p-waarde = 0.4218. Dit is groter dan 0.05, dus de nulhypothese wordt niet verworpen. Dit betekent dat er geen bewijs is gevonden voor een significant verschil in handlengte/handbreedte-ratio's tussen mannen en vrouwen.
+De p-waarde = 0.4218. Dit is groter dan 0.05, dus nulhypothese 3 wordt niet verworpen. Dit betekent dat er geen bewijs is gevonden voor een significant verschil in handlengte/handbreedte-ratio's tussen mannen en vrouwen.
+
 Hoe kleiner de steekproefgrootte (_sample size_) hoe lastiger het is de onderliggende verdeling vast te stellen. Speel maar eens met dit blokje code, en verander de steekproefgrootte (`n=`) in de `rnorm()` functie en de `breaks=` in de `hist()` functie. 
 Neem voor _n_ bijvoorbeeld achtereenvolgens 10, 100, 1000, 10000, 10000 en voor _breaks_ 5, 10, 50. Wanneer zie je een echte normaalverdeling verschijnen? 
 ```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
