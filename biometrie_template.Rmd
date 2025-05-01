@@ -1,15 +1,19 @@
 ---
 title: "Biometrie onderzoek"
-authors: "Ype de Vos en Michelle Hazeveld (studentennummer: 488153)"
-date: "`r Sys.Date()`"
+authors: 'Ype de Vos (studentennummer: 455650) en Michelle Hazeveld (studentennummer:
+  488153)'
+date: "1 mei 2025"
 output:
   html_document:
     css: style.css
-    toc: yes
+    toc: true
     toc_depth: 3
     toc_float:
-      collapsed: yes
-      smooth_scroll: yes
+      collapsed: true
+      smooth_scroll: true
+  pdf_document:
+    toc: true
+    toc_depth: '3'
 ---
 
 ```{r setup, include=FALSE}
@@ -19,111 +23,69 @@ library(ggplot2)
 
 ```
 
-
-## Inleiding
-
-GEEF EEN HEEL KORTE INLEINDING VAN JE ONDERZOEK
+### Inleiding
 
 Biometrie betekent het vaststellen van meetbare eigenschappen van levende wezens. Dit kan bijvoorbeeld betekenen lichaamsgewicht, lengte van ledematen, levensduur, sexe. Biometrische kenmerken worden ook gebruikt in je paspoort.
 
 4 bio-informatica studenten zijn bezig geweest met het vaststellen van de handlengte/breedte-ratio, in het bijzonder in afhankelijkheid van sekse.
 
-:::info
-Het staat je vrij een ander simpel te meten biometrisch kenmerk te onderzoeken. Voorwaarde is wel dat je twee aspecten meet (bv lichaamslengte en hoofdomtrek) en hun relatie onderzoekt, en ook dat je verschillende groepen onderzoekt (man/vrouw, jong/oud etc.). Ten slotte moeten verschillende studenten het meetwerk afwisselen en ook dat moet vastgelegd worden.
-:::
+### Onderzoeksvragen
 
+1.  Is er een significant sekseverschil bij de mens in de lengte van de hand?
+2.  Is er een significant sekseverschil bij de mens in de breedte van de hand?
+3.  Is er een significant sekseverschil bij de mens in de lengte/breedte-ratio van de hand? :::
 
+## hypotheses
 
-:::attention
-GEEF HIER JE ONDERZOEKSVRAGEN
-1. Is er bij de mens een significant sekseverschil in de lengte van de hand?
-2. Is er bij de mens een significant sekseverschil in de breedte van de hand?
-3. Is er bij de mens een significant sekseverschil in de lengte/breedte-ratio van de hand?
-:::
+1.  Er is een significant sekseverschil bij de mens in de lengte van de hand.
+2.  Er is een significant sekseverschil bij de mens in de breedte van de hand.
+3.  Er is een significant sekseverschil bij de mens in de lengte/breedte-ratio van de hand. :::
 
+### Nulhypotheses
 
-:::attention
-GEEF HIER JE HYPOTHESES
-1. Er is bij de mens een significant sekseverschil in de lengte van de hand.
-2. Er is bij de mens een significant sekseverschil in de breedte van de hand.
-3. Er is bij de mens een significant sekseverschil in de lengte/breedte-ratio van de hand.
-:::
-
-
-:::attention
-GEEF HIER JE NULHYPOTHESES
-1. Er is bij de mens geen significant sekseverschil in de lengte van de hand.
-2. Er is bij de mens geen significant sekseverschil in de breedte van de hand.
-3. Er is bij de mens geen significant sekseverschil in de lengte/breedte-ratio van de hand.
-:::
-
+1.  Er is geen significant sekseverschil bij de mens in de lengte van de hand.
+2.  Er is geen significant sekseverschil bij de mens in de breedte van de hand.
+3.  Er is geen significant sekseverschil bij de mens in de lengte/breedte-ratio van de hand. :::
 
 ### Ontwerp van het experiment
 
-> GEEF EEN KORT OVERZICHT VAN JE EXPERIMENT
 Van 40 willekeurig geselecteerde proefpersonen in en rond het schoolgebouw is de handlengte en -breedte gemeten.
 
-### Ontwerp het protocol
+### Protocol
 
-VUL HIER ONDER HET PROTOCOL AAN OF PAS DEZE AAN NAAR JOUW OPZET.
 ##### Benodigdheden
 
-1. Maatlat, schuifmaat of meetlint.  
-2. Spreadsheet om resultaten vast te leggen.
+1.  Liniaal.\
+2.  Csv-bestand in de app Excel om resultaten vast te leggen.
 
 ##### Data verzamelen
 
-Zoek, samen met een ander groepje van je klas, in of rond het schoolgebouw medestudenten. Vraag beleefd of ze willen participeren in een klein wetenschappelijk onderzoekje voor school waarbij de maten van de hand opgenomen zullen worden.  
-Is het antwoord nee, dan groet je vriendelijk en zoek je verder.  
-Is het antwoord ja, dan vraag je of de proefpersoon de hand horizontaal en gestrekt wil houden met de palm naar beneden. Vervolgens meet je zowel de lengte als de breedte van de hand op, in centimeters. Deze leg je vast in de spreadsheet, . Kijk of de persoon biologisch gezien een man of een vrouw is. Het "parallel groepje" (dat niet jouw bevindingen mag horen) doet dezelfde metingen in dezelfde volgorde en slaat de gegevens die het gemeten heeft op.  
-Bedank de proefpersoon voor deelname.  
+Zoek, samen met een ander groepje van je klas, in of rond het schoolgebouw medestudenten. Vraag beleefd of ze willen participeren in een klein wetenschappelijk onderzoekje voor school waarbij de maten van de hand opgenomen zullen worden.\
+Is het antwoord nee, dan groet je vriendelijk en zoek je verder.\
+Is het antwoord ja, dan vraag je of de proefpersoon de hand horizontaal en gestrekt wil houden met de palm naar beneden. Vervolgens meet je zowel de lengte als de breedte van de hand op, in centimeters. Deze leg je vast in de spreadsheet, . Kijk of de persoon biologisch gezien een man of een vrouw is. Het "parallel groepje" (dat niet jouw bevindingen mag horen) doet dezelfde metingen in dezelfde volgorde en slaat de gegevens die het gemeten heeft op.\
+Bedank de proefpersoon voor deelname.\
 Ga door totdat van ten minste 40 proefpersonen de gegevens zijn verzameld.
 
+### Analyse
 
-## Uitvoering
+#### Lees je eigen data in
 
-:::attention
-Je moet de onderzoeksresultaten in deze vorm opslaan:  
+#### Beschrijvende statistiek
 
-<pre>
-laborant_ID,subject_ID,handlengte,handbreedte,sexe
-3241,G1_03,113,104,m
-<meer rijen met data>
-</pre>
-:::
-
-
-## Analyse
-
-### Lees je eigen data in
-
-Om data vanuit een tekstbestand in te lezen kan je dit codeblok gebruiken, aannemend dat je data er exact zo uitzien als in bovenstaande voorbeeld:
-
-### Beschrijvende statistiek
-
-LAAT ENKELE BESCHRIJVENDE STATISTISCHE WAARDES ZIEN.
-GEEF EEN OF MEERDERE BOXPLOTS EN HISTOGRAMMEN
-BESPREEK DEZE DATA EN FIGUREN KORT.
-KAN JE IETS ZEGGEN OVER DE DATAVERDELING?
-
-```{r demo-data-inlees, eval=FALSE}
+```{r demo-data-inlees, eval=FALSE, fig.asp=.75, out.width='80%', fig.align='center'}
 data_file <- "zelf_verzamelde_data_handen.csv"
 
 #data format: laborant_ID,subject_ID,handlengte,handbreedte,sexe
 biometric_data <- read.table(file = data_file,
                         header = TRUE,
                         sep = ",")
-
 handlengte <- biometric_data[3]
 handbreedte <- biometric_data[2]
 lengte_breedte_ratio <- handlengte / handbreedte
-#c(lengte_breedte_ratio)
 # Gebruikte bronnen voor onderstaande code in deze chunk: 
 # https://stackoverflow.com/questions/13079387/how-to-add-data-by-columns-in-csv-f# ile-using-r#:~:text=You%20can't%20append%20columns,file%20is%20stored%20on%2Ddis# k.
 # https://how.dev/answers/what-are-the-rownames-and-colnames-functions-in-r 
 df_ratio <- data.frame(lengte_breedte_ratio)
-
-c(df_ratio)
 
 tmp <- read.csv("zelf_verzamelde_data_handen.csv")
 tmp <- cbind(tmp, df_ratio)
@@ -132,10 +94,6 @@ write.csv(tmp, "zelf_verzamelde_data_handen_v2.csv")
 biometric_data <- read.table(file = "zelf_verzamelde_data_handen_v2.csv",
                         header = TRUE,
                         sep = ",")
-```
-
-Let op: als je missende data hebt moet je die specificeren door dit argument toe te voegen: `na.strings = "<jouw NA symbool>"`
-```{r}
 #split over gender into list of dataframes
 geslacht_split_data <- split(x = biometric_data,
       f = biometric_data$geslacht)
@@ -150,18 +108,19 @@ sapply(X = geslacht_split_data,
              stdev_handbreedte = sd(x$handbreedte),
              stdev_lengte_breedte_ratio = sd(x$lengte_breedte_ratio))
        })
-```
-```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+
 ggplot(data = biometric_data,
        mapping = aes(x = geslacht, y = handlengte, fill = geslacht)) +
     geom_boxplot() +
     geom_point() +
     labs(x = "Geslacht", y = "Handlengte (cm)") + 
     theme_minimal()
+
 ```
-Voor de verschillen aan de hand van twee boxplots is steeds de volgende bron gebruikt: https://content.math4all.nl/sec/content/vc-e6/vc-e63/vc-e63-explanation-1.html 
-De boxen overlappen elkaar niet, dus is er een groot verschil in de handlengte tussen mannen en vrouwen.
-```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+
+Voor de verschillen aan de hand van twee boxplots is steeds de volgende bron gebruikt: <https://content.math4all.nl/sec/content/vc-e6/vc-e63/vc-e63-explanation-1.html> De boxen overlappen elkaar niet, dus is er een groot verschil in de handlengte tussen mannen en vrouwen.
+
+```{r boxplot-hand-breedte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
 ggplot(data = biometric_data,
        mapping = aes(x = geslacht, y = handbreedte, fill = geslacht)) +
     geom_boxplot() +
@@ -169,8 +128,10 @@ ggplot(data = biometric_data,
     labs(x = "Geslacht", y = "Handbreedte (cm)") + 
     theme_minimal()
 ```
+
 De boxen overlappen elkaar niet, dus is er een groot verschil in de handbreedte tussen mannen en vrouwen.
-```{r boxplot-hand-lengte-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
+
+```{r boxplot-hand-lengte-breedte-ratio-over-geslacht-ggplot, fig.asp=.75, out.width='80%', fig.align='center'}
 ggplot(data = biometric_data,
        mapping = aes(x = geslacht, y = lengte_breedte_ratio, fill = geslacht)) +
     geom_boxplot() +
@@ -178,8 +139,10 @@ ggplot(data = biometric_data,
     labs(x = "Geslacht", y = "Lengte/breedte-ratio (cm)") + 
     theme_minimal()
 ```
+
 De boxen overlappen elkaar en beide medianen liggen binnen de box van de andere boxplot, dus is er een gering verschil in de handlengte/handbreedte-ratio tussen mannen en vrouwen.
-```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
+
+```{r lengte-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = handlengte, fill = geslacht)) +
     geom_histogram(bins = 1 + ceiling(log2(40)), colour = "black") + # histogram layer with using Sturge's rule to determine the number of bins. Source: https://medium.datadriveninvestor.com/how-to-decide-on-the-number-of-bins-of-a-histogram-3c36dc5b1cd8
@@ -187,8 +150,10 @@ ggplot(data = biometric_data,
     labs(x = "Handlengte (cm)") +
     theme_minimal()
 ```
+
 De data in het histogram over de handlengte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
-```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
+
+```{r breedte-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = handbreedte, fill = geslacht)) +
     geom_histogram(bins = 1 + ceiling(log2(40)), colour = "black") + # histogram layer with using Sturge's rule to determine the number of bins
@@ -196,7 +161,9 @@ ggplot(data = biometric_data,
     labs(x = "Handbreedte (cm)") +
     theme_minimal()
 ```
+
 De data in het histogram over de handbreedte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
+
 ```{r ratio-histogram, fig.asp=0.7, out.width='70%', fig.align='center', results='hold'}
 ggplot(data = biometric_data,
        mapping = aes(x = lengte_breedte_ratio, fill = geslacht)) +
@@ -205,15 +172,18 @@ ggplot(data = biometric_data,
     labs(x = "Lengte/breedte-ratio") +
     theme_minimal()
 ```
-De data in het histogram over de handlengte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is.
-### Welke verdeling?
+
+De data in het histogram over de handlengte lijkt niet normaal verdeeld te zijn, maar verderop in dit bestand is een Shapiro-Wilk normality test gedaan en daaruit blijkt dat de data wel normaal verdeeld is. Dit komt denk ik doordat in het histogram de data over mannen en vrouwen apart weergegeven is, terwijl de Shapiro-Wilk normality test zonder onderscheid tussen mannen en vrouwen uitgevoerd is. \### Welke verdeling?
+
 ```{r test-for-normality}
 shapiro.test(biometric_data$handlengte)
 shapiro.test(biometric_data$handbreedte)
 shapiro.test(biometric_data$lengte_breedte_ratio)
 ```
+
 Bij zowel de handlengte als handbreedte als lengte_breedte_ratio is de p-waarde (resp. 0.1122, 0.1514 en 0.2402) groter dan 0.05, dus is de verdeling van de steekproef niet significant verschillend van de normale verdeling. De t-test kan alleen bij een normaalverdeling gebruikt worden. Dus in dit geval kan de t-test gebruikt worden. Hieronder wordt de onafhankelijke t-test uitgevoerd.
-```{r t-test op handlengte}
+
+```{r t-test-op-handlengte}
 female_lengths <- subset(biometric_data, 
                         subset = geslacht == "vrouw", 
                         select = handlengte, 
@@ -224,7 +194,9 @@ male_lengths <- subset(biometric_data,
                         drop = T)
 t.test(female_lengths, male_lengths)
 ```
-De p-waarde is 1.282e-05. Dit is kleiner dan 0.05, dus nulhypothese 1 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil in handlengte tussen mannen en vrouwen.
+
+De p-waarde is 1.282e-05. Dit is kleiner dan 0.05, dus nulhypothese 1 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil bij de mens in handlengte tussen mannen en vrouwen.
+
 ```{r t-test-op-handbreedte}
 female_widths <- subset(biometric_data, 
                         subset = geslacht == "vrouw", 
@@ -236,8 +208,10 @@ male_widths <- subset(biometric_data,
                         drop = T)
 t.test(female_widths, male_widths)
 ```
-De p-waarde is 7.335e-05. Dit is kleiner dan 0.05, wat betekent dat nulhypothese 2 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil in handbreedte tussen mannen en vrouwen. 
-```{r t-test-oplengte-breedte-ratio}
+
+De p-waarde is 7.335e-05. Dit is kleiner dan 0.05, wat betekent dat nulhypothese 2 wordt verworpen. Dit betekent dat er bewijs is gevonden voor een significant verschil bij de mens in handbreedte tussen mannen en vrouwen.
+
+```{r t-test-op-lengte-breedte-ratio}
 female_ratios <- subset(biometric_data, 
                         subset = geslacht == "vrouw", 
                         select = lengte_breedte_ratio, 
@@ -248,25 +222,28 @@ male_ratios <- subset(biometric_data,
                         drop = T)
 t.test(female_ratios, male_ratios)
 ```
-De p-waarde = 0.4218. Dit is groter dan 0.05, dus nulhypothese 3 wordt niet verworpen. Dit betekent dat er geen bewijs is gevonden voor een significant verschil in handlengte/handbreedte-ratio's tussen mannen en vrouwen.
 
-Hoe kleiner de steekproefgrootte (_sample size_) hoe lastiger het is de onderliggende verdeling vast te stellen. Speel maar eens met dit blokje code, en verander de steekproefgrootte (`n=`) in de `rnorm()` functie en de `breaks=` in de `hist()` functie. 
-Neem voor _n_ bijvoorbeeld achtereenvolgens 10, 100, 1000, 10000, 10000 en voor _breaks_ 5, 10, 50. Wanneer zie je een echte normaalverdeling verschijnen? 
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+De p-waarde = 0.4218. Dit is groter dan 0.05, dus nulhypothese 3 wordt niet verworpen. Dit betekent dat er geen bewijs is gevonden voor een significant verschil bij de mens in handlengte/handbreedte-ratio's tussen mannen en vrouwen.
+
+Hoe kleiner de steekproefgrootte (*sample size*) hoe lastiger het is de onderliggende verdeling vast te stellen. Speel maar eens met dit blokje code, en verander de steekproefgrootte (`n=`) in de `rnorm()` functie en de `breaks=` in de `hist()` functie. Neem voor *n* bijvoorbeeld achtereenvolgens 10, 100, 1000, 10000, 10000 en voor *breaks* 5, 10, 50. Wanneer zie je een echte normaalverdeling verschijnen?
+
+```{r sampling-demo-1, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 5, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-2, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-3, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
@@ -274,21 +251,23 @@ ggplot(data = hist_data,
     theme_minimal()
 ```
 
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+```{r sampling-demo-4, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 5, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-5, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-6, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
@@ -296,21 +275,23 @@ ggplot(data = hist_data,
     theme_minimal()
 ```
 
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+```{r sampling-demo-7, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 1000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 5, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-8, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 1000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-9, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 1000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
@@ -318,22 +299,23 @@ ggplot(data = hist_data,
     theme_minimal()
 ```
 
-
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+```{r sampling-demo-10, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 5, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-11, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-12, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 10000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
@@ -341,77 +323,137 @@ ggplot(data = hist_data,
     theme_minimal()
 ```
 
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+```{r sampling-demo-13, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 5, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-14, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 10, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-```{r sampling-demo, fig.asp=.6, out.width='60%', fig.align='center'}
+
+```{r sampling-demo-15, fig.asp=.6, out.width='60%', fig.align='center'}
 hist_data <- data.frame(x = rnorm(n = 100000))
 ggplot(data = hist_data,
        mapping = aes(x = x)) +
     geom_histogram(bins = 50, fill = "gold", colour = "black") +
     theme_minimal()
 ```
-:::attention
-**Dit _experiment_ met de argumenten van `rnorm()` en `hist()` moet je opnemen in je eigen RMarkdown.**  
+
+::: attention
+**Dit *experiment* met de argumenten van `rnorm()` en `hist()` moet je opnemen in je eigen RMarkdown.**\
 Beantwoord deze vragen:
 
-
-
-1. Wat gebeurt er met de vorm van de verdeling als `n` groter wordt?
-2. Wat gebeurt er met de spreiding van de data (x-as) als `n` groter wordt, en kan je dat verklaren?
-3. Waarom is bij zelfde instellingen voor `n` en `breaks` de uitkomst toch verschillend?
-4. Welke minimale `n` geeft het meeste kans om een echte normaalverdeling te zien?
-5. Wat voor bijzonders is er aan de hand met het `breaks` argument? Geeft de documentatie daar een verklaring voor?
+1.  Wat gebeurt er met de vorm van de verdeling als `n` groter wordt?
+2.  Wat gebeurt er met de spreiding van de data (x-as) als `n` groter wordt, en kan je dat verklaren?
+3.  Waarom is bij zelfde instellingen voor `n` en `breaks` de uitkomst toch verschillend?
+4.  Welke minimale `n` geeft het meeste kans om een echte normaalverdeling te zien?
+5.  Wat voor bijzonders is er aan de hand met het `breaks` argument? Geeft de documentatie daar een verklaring voor?
 
 Antwoorden:
 
-1. Als n steeds groter wordt, nadert de vorm van de verdeling steeds meer tot een normaalverdeling.
-2. Als n steeds groter wordt, wordt de spreiding steeds kleiner, want de spreiding wordt berekend door sigma / wortel(n) Bron: https://stats.libretexts.org/Bookshelves/Applied_Statistics/Business_Statistics_(OpenStax)/07%3A_The_Central_Limit_Theorem/7.02%3A_Using_the_Central_Limit_Theorem
-3. Dit komt denk ik door toevallige fouten.
-4. Als ik het antwoord uit de histogrammen haal, denk ik dat n minimaal 10000 moet zijn, maar bij het vak statistiek op mijn vorige school heb ik geleerd dat n minimaal 30 moet zijn.
-5. Bij teveel bins zal de variabiliteit groter lijken dan in werkelijkheid. Variabiliteit beschrijft hoe ver de datapunten van elkaar van het centrum van de spreiding liggen. Bij te weinig bins zal de variabiliteit juist kleiner lijken dan in werkelijkheid. Bronnen: 
+1.  Als n steeds groter wordt, nadert de vorm van de verdeling steeds meer tot een normaalverdeling.
+2.  Als n steeds groter wordt, wordt de spreiding steeds kleiner, want de spreiding wordt berekend door sigma / wortel(n) Bron: [https://stats.libretexts.org/Bookshelves/Applied_Statistics/Business_Statistics\_(OpenStax)/07%3A_The_Central_Limit_Theorem/7.02%3A_Using_the_Central_Limit_Theorem](https://stats.libretexts.org/Bookshelves/Applied_Statistics/Business_Statistics_(OpenStax)/07%3A_The_Central_Limit_Theorem/7.02%3A_Using_the_Central_Limit_Theorem){.uri}
+3.  Dit komt denk ik door toevallige fouten.
+4.  Als ik het antwoord uit de histogrammen haal, denk ik dat n minimaal 10000 moet zijn, maar bij het vak statistiek op mijn vorige school heb ik geleerd dat n minimaal 30 moet zijn.
+5.  Bij teveel bins zal de variabiliteit groter lijken dan in werkelijkheid. Variabiliteit beschrijft hoe ver de datapunten van elkaar van het centrum van de spreiding liggen. Bij te weinig bins zal de variabiliteit juist kleiner lijken dan in werkelijkheid. Bronnen:
 
-https://r-charts.com/distribution/histogram-breaks/
+<https://r-charts.com/distribution/histogram-breaks/>
 
-https://www.scribbr.com/statistics/variability/#:~:text=Variability%20describes%20how%20far%20apart,as%20spread%2C%20scatter%20or%20dispersion. 
+<https://www.scribbr.com/statistics/variability/#>:\~:text=Variability%20describes%20how%20far%20apart,as%20spread%2C%20scatter%20or%20dispersion.
 :::
 
 ### Bronnen van variatie
 
-ONDERZOEK BRONNEN VAN VARIATIE
-BESPREEK DIT KORT
+-Overerving: Ieder organisme erft een andere set allelen van de ouders (met uitzondering van eeneiigie meerlingen) \## Reflectie op het experiment
 
-### De hypothese aannemen?
+::: info
+Bespreek in je groep de volgende vragen en voeg de antwoorden toe aan je uitgewerkte onderzoeksdocument.
 
-VOER RELEVANTE STATISTISCHE TESTS UIT
+1.  Zijn de metingen tussen de verschillende meters ook (significant) verschillend? Zo ja, waardoor zou je de verschillen kunnen verklaren?
 
+```{r demo-data-inlees-ander-groepje, eval=FALSE}
+data_file_ag <- "hand_metingen_ander_groepje.csv" # ag staat voor ander groepje.
 
-## Reflectie op het experiment
+#data format: laborant_ID,subject_ID,handlengte,handbreedte,sexe
+biometric_data_ag <- read.table(file = data_file_ag,
+                        header = TRUE,
+                        sep = ",")
 
-:::info
-Bespreek in je groep de volgende vragen en voeg de antwoorden toe aan je uitgewerkte onderzoeksdocument.  
+handlengte_ag <- biometric_data_ag[2]
+handbreedte_ag <- biometric_data_ag[3]
+lengte_breedte_ratio_ag <- handlengte_ag / handbreedte_ag
+# Gebruikte bronnen voor onderstaande code in deze chunk: 
+# https://stackoverflow.com/questions/13079387/how-to-add-data-by-columns-in-csv-f# ile-using-r#:~:text=You%20can't%20append%20columns,file%20is%20stored%20on%2Ddis# k.
+# https://how.dev/answers/what-are-the-rownames-and-colnames-functions-in-r 
+df_ratio_ag <- data.frame(lengte_breedte_ratio_ag)
 
-1. Zijn de metingen tussen de verschillende meters ook (significant) verschillend? Zo ja, waardoor zou je de verschillen kunnen verklaren?
+tmp_ag <- read.csv("hand_metingen_ander_groepje.csv")
+tmp_ag <- cbind(tmp_ag, df_ratio_ag)
+colnames(tmp_ag) <- c("aantal_ag", "handlengte_ag", "handbreedte_ag", "geslacht_ag", "lengte_breedte_ratio_ag")
+write.csv(tmp_ag, "hand_metingen_ander_groepje_v2.csv")
+biometric_data_ag <- read.table(file = "hand_metingen_ander_groepje_v2.csv",
+                        header = TRUE,
+                        sep = ",")
+```
 
-2. Onderzoek de verschillen tussen mannen en vrouwen met betrekking tot hand lengte, handbreedte en de ratio.
+```{r Shapiro-Wilk-test-handlengte-ander-groepje}
+shapiro.test(biometric_data_ag$handlengte_ag)
+```
 
-3. Zou je het protocol aanpassen na deze ervaring, of was hij voldoende duidelijk en reproduceerbaar?
+Bij de handlengte van het andere groepje geeft de Shapiro-Wilk test een p-waarde van 0.09485. Dit is groter dan 0.05, dus is de verdeling van de steekproef niet significant verschillend van de normale verdeling. Dus de t-test kan in dit geval gebruikt worden.
+
+```{r t-test-handlengte-ander-groepje}
+female_lengths_ag <- subset(biometric_data_ag, 
+                        subset = geslacht_ag == "V", 
+                        select = handlengte_ag, 
+                        drop = T) # drop = T forces ro a vector
+male_lengths_ag <- subset(biometric_data_ag, 
+                        subset = geslacht_ag == "M", 
+                        select = handlengte_ag, 
+                        drop = T) # drop = T forces ro a vector
+t.test(female_lengths_ag, male_lengths_ag)
+```
+
+Bij de handlengte van het andere groepje geeft de t-test een p-waarde van 9.9e-06. Dit is kleiner dan 0.05, dus bij het andere groepje wordt nulhypothese 1 verworpen. Dus er is bewijs gevonden voor een significant sekseverschil bij de mens bij de mens in de lengte van de hand.
+
+```{r Shapiro-Wilk-test-handbreedte-ander-groepje}
+shapiro.test(biometric_data_ag$handbreedte_ag)
+```
+
+Bij de handbreedte van het andere groepje geeft de Shapiro-Wilk test een p-waarde 2.133e-09. Dit is kleiner dan 0.05, dus is de verdeling van de steekproef significant verschillend van de normale verdeling. De t-test kan alleen bij een normaalverdeling gebruikt worden. Dus in dit geval kan de t-test niet gebruikt worden. Als er geen sprake is van een normaalverdeling, kan de Mann-Whitney U test gebruikt worden. Dus bij het verschil in de handlengte tussen mannen en vrouwen van het andere groepje wordt de Mann-Whitney u test gebruikt.
+
+```{r mann-whitney-u-test-handbreedte-ander-groepje}
+female_widths_ag <- subset(biometric_data_ag, 
+                        subset = geslacht_ag == "V", 
+                        select = handbreedte_ag, 
+                        drop = T) # drop = T forces ro a vector
+male_widths_ag <- subset(biometric_data_ag, 
+                        subset = geslacht_ag == "M", 
+                        select = handbreedte_ag, 
+                        drop = T) # drop = T forces ro a vector
+wilcox.test(female_widths_ag, male_widths_ag, exact = F)
+```
+
+Bij de handbreedte van het andere groepje geeft de Mann-Whitney u test een p-waarde van 6.341e-05. Dit is kleiner dan 0.05, dus bij het andere groepje wordt nulhypothese 2 verworpen. Dus bij het andere groepje is er bewijs voor een significant sekseverschil bij de mens in de breedte van de hand.
+
+Bij zowel mijn groepje als bij het andere groepje is er een significant verschil bij de mens gevonden in de handlengte tussen mannen en vrouwen. Hetzelfde geldt voor de handbreedte. Toch is uit de gemeten waarden van zowel de handlengte als -breedte gebleken dat mijn groepje iets andere waarden heeft gemeten dan het andere groepje.
+
+2.  Onderzoek de verschillen tussen mannen en vrouwen met betrekking tot hand lengte, handbreedte en de ratio. Er is een significant verschil bij de mens gevonden in de handlengte tussen mannen en vrouwen. Ditzelfde geldt ook voor de handbreedte, maar niet voor de handlengte/handbreedte-ratio.
+
+3.  Zou je het protocol aanpassen na deze ervaring, of was hij voldoende duidelijk en reproduceerbaar? Het protocol was niet voldoende duidelijk en ook niet reproduceerbaar, want mijn groepje heeft de metingen tot op 1 mm nauwkeurig in cm gedaan, maar het andere groepje heeft de metingen tot op 5 mm nauwkeurig in cm gedaan.
 :::
 
-
-:::attention
+::: attention
 #### Wat je moet inleveren
-Voor de verwerking en analyse van je eigen data maak je gebruik van het aangeleverde template RMarkdown document. Daarin doorloop je dezelfde onderzoek stappen als hieronder, maar dan met je eigen data. Aan het einde van de dag gaat dat document, in originele en "geknitte" vorm, samen met je databestand, in een git repo die is opgezet volgens voorschift in de cursushandleiding. De link hiernaar toe gaat in je portfolio op eJournal. Let op dat je _alle_ stappen hebt doorlopen voordat je inlevert. Gebruik ook de RStudio spellingscontrole!  
+
+Voor de verwerking en analyse van je eigen data maak je gebruik van het aangeleverde template RMarkdown document. Daarin doorloop je dezelfde onderzoek stappen als hieronder, maar dan met je eigen data. Aan het einde van de dag gaat dat document, in originele en "geknitte" vorm, samen met je databestand, in een git repo die is opgezet volgens voorschift in de cursushandleiding. De link hiernaar toe gaat in je portfolio op eJournal. Let op dat je *alle* stappen hebt doorlopen voordat je inlevert. Gebruik ook de RStudio spellingscontrole!\
 Vergeet niet jullie namen en studentnummers bovenaan de markdown te zetten!
 :::
