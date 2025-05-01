@@ -16,7 +16,7 @@ output:
     toc_depth: '3'
 ---
 
-```{r setup, include=FALSE}
+```{r setup}
 # DON'T TOUCH THIS
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
@@ -72,7 +72,7 @@ Ga door totdat van ten minste 40 proefpersonen de gegevens zijn verzameld.
 
 #### Beschrijvende statistiek
 
-```{r demo-data-inlees, eval=FALSE, fig.asp=.75, out.width='80%', fig.align='center'}
+```{r demo-data-inlees, fig.asp=.75, out.width='80%', fig.align='center'}
 data_file <- "zelf_verzamelde_data_handen.csv"
 
 #data format: laborant_ID,subject_ID,handlengte,handbreedte,sexe
@@ -379,7 +379,7 @@ Bespreek in je groep de volgende vragen en voeg de antwoorden toe aan je uitgewe
 
 1.  Zijn de metingen tussen de verschillende meters ook (significant) verschillend? Zo ja, waardoor zou je de verschillen kunnen verklaren?
 
-```{r demo-data-inlees-ander-groepje, eval=FALSE}
+```{r demo-data-inlees-ander-groepje}
 data_file_ag <- "hand_metingen_ander_groepje.csv" # ag staat voor ander groepje.
 
 #data format: laborant_ID,subject_ID,handlengte,handbreedte,sexe
